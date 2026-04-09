@@ -212,7 +212,6 @@ footer em{color:var(--red);font-style:normal}
     <button onclick="nav('issues')">Issues</button>
     <button onclick="nav('voice')">Your Voice</button>
     <button onclick="nav('rant')">Rant Zone</button>
-    <button onclick="nav('direct')">Tell AFJ</button>
     <button onclick="nav('polls')">Polls</button>
   </div>
   <div id="nav-right">
@@ -277,11 +276,11 @@ footer em{color:var(--red);font-style:normal}
 </div>
 
 <div class="page" id="page-voice">
-  <div class="pg-head"><h1>Your <em>Voice</em></h1><p>Share your opinions. AFJ is listening.</p></div>
+  <div class="pg-head"><h1>Your <em>Voice</em></h1><p>Send AFJ a message, upload a video or photo, and tell him exactly what's on your mind.</p></div>
   <div class="wrap">
     <div class="voice-box">
-      <h3>Speak Your Mind</h3>
-      <p class="note">Pick a topic:</p>
+      <h3>Speak Directly to AFJ</h3>
+      <p class="note">Pick a topic (optional):</p>
       <div class="tags" id="tags">
         <button class="tag" onclick="toggleTag(this)">Education</button>
         <button class="tag" onclick="toggleTag(this)">Immigration</button>
@@ -293,13 +292,31 @@ footer em{color:var(--red);font-style:normal}
         <button class="tag" onclick="toggleTag(this)">Safety</button>
         <button class="tag" onclick="toggleTag(this)">Other</button>
       </div>
-      <div class="fg"><textarea class="full-input" id="opinion-txt" rows="5" placeholder="Tell AFJ what's on your mind. Be real."></textarea></div>
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <div class="upload-zone" id="upload-zone" style="margin:16px 0" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+        <input type="file" accept="video/*,audio/*,image/*" onchange="handleFile(event)" />
+        <div style="font-size:2.5rem">🎥</div>
+        <h3>Attach Video, Audio, or Image</h3>
+        <p>Optional · Drag & drop or click · MP4, MOV, MP3, WAV, JPG, PNG</p>
+      </div>
+      <div class="upload-prev" id="upload-prev"><strong>File Ready</strong><span id="upload-name"></span></div>
+      <button class="ai-toggle" onclick="toggleAI()">
+        <h3>✨ Use AI to Draft Your Message</h3>
+        <p>Describe what you want to say and AI will write it for you</p>
+      </button>
+      <div class="ai-box" id="ai-box">
+        <p class="note" style="margin-bottom:10px">Describe what you want to tell AFJ:</p>
+        <textarea class="full-input" id="ai-prompt" rows="3" placeholder="e.g. I want to talk about how inflation has crushed my small business..."></textarea>
+        <button class="btn-sub" id="ai-btn" onclick="genAI()">✨ Generate Message</button>
+        <div class="ai-resp" id="ai-resp"><div class="ai-resp-lbl">AI-Drafted Message for AFJ:</div><div id="ai-resp-txt"></div></div>
+      </div>
+      <label class="field-lbl" style="margin-top:16px">Your Message</label>
+      <textarea class="full-input" id="voice-msg" rows="5" placeholder="Tell AFJ what's on your mind. Share your story, ask questions, make demands."></textarea>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px">
         <span class="note">Submitted anonymously unless registered.</span>
-        <button class="btn-sub" onclick="submitOpinion()">Submit My Opinion →</button>
+        <button class="btn-sub" onclick="submitVoice()">Send to AFJ →</button>
       </div>
     </div>
-    <div id="opinions-feed" style="margin-top:24px"></div>
+    <div id="voice-feed" style="margin-top:24px"></div>
   </div>
 </div>
 
@@ -317,31 +334,6 @@ footer em{color:var(--red);font-style:normal}
   </div>
 </div>
 
-<div class="page" id="page-direct">
-  <div class="pg-head"><h1>Tell <em>AFJ</em> Directly</h1><p>Upload a video, use AI to draft your message, or write it yourself.</p></div>
-  <div class="wrap">
-<div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
-      <input type="file" accept="video/*,audio/*,image/*" onchange="handleFile(event)" />
-      <div style="font-size:2.5rem">🎥</div>
-      <h3>Upload Video or Audio</h3>
-      <p>Drag & drop or click · MP4, MOV, MP3, WAV, JPG, PNG</p>
-    </div>
-    <div class="upload-prev" id="upload-prev"><strong>File Ready</strong><span id="upload-name"></span></div>
-    <button class="ai-toggle" onclick="toggleAI()">
-      <h3>✨ Use AI to Write Your Message</h3>
-      <p>Describe what you want to say and AI will draft it for you</p>
-    </button>
-    <div class="ai-box" id="ai-box">
-      <p class="note" style="margin-bottom:10px">Describe what you want to tell AFJ:</p>
-      <textarea class="full-input" id="ai-prompt" rows="3" placeholder="e.g. I want to talk about how inflation has crushed my small business..."></textarea>
-      <button class="btn-sub" id="ai-btn" onclick="genAI()">✨ Generate Message</button>
-      <div class="ai-resp" id="ai-resp"><div class="ai-resp-lbl">AI-Drafted Message for AFJ:</div><div id="ai-resp-txt"></div></div>
-    </div>
-    <label class="field-lbl" style="margin-top:16px">Your Written Message to AFJ</label>
-    <textarea class="full-input" id="direct-msg" rows="5" placeholder="Write directly to AFJ. Share your story, ask questions, make demands."></textarea>
-    <div style="display:flex;justify-content:flex-end"><button class="btn-sub" onclick="submitDirect()">Send to AFJ →</button></div>
-  </div>
-</div>
 
 <div class="page" id="page-polls">
   <div class="pg-head"><h1>Campaign <em>Polls</em></h1><p>Vote and see live results.</p></div>
@@ -501,7 +493,7 @@ async function boot(url, key) {
     await loadCounters();
     await loadPolls();
     await loadRants();
-    await loadOpinions();
+    await loadVoice();
     startRealtime();
   } catch (err) {
     console.error(err);
@@ -521,7 +513,7 @@ function startRealtime() {
       prependFeed('rants-feed', payload.new.message, 'Anonymous · Just now', true);
     })
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'opinions' }, function(payload) {
-      prependFeed('opinions-feed', payload.new.message, (payload.new.topic_tags || 'General') + ' · Just now', false);
+      prependFeed('voice-feed', payload.new.message, (payload.new.topic_tags || 'General') + ' · Just now', false);
     })
     .on('postgres_changes', { event: '*', schema: 'public', table: 'polls' }, loadPolls)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'poll_votes' }, loadPolls)
@@ -560,7 +552,7 @@ function nav(id) {
   document.querySelectorAll('#nav-links button').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById('admin-page').classList.remove('show');
   document.getElementById('page-' + id).classList.add('show');
-  const map = { home: 0, issues: 1, voice: 2, rant: 3, direct: 4, polls: 5 };
+  const map = { home: 0, issues: 1, voice: 2, rant: 3, polls: 4 };
   const btns = document.querySelectorAll('#nav-links button');
   if (map[id] !== undefined && btns[map[id]]) btns[map[id]].classList.add('active');
   window.scrollTo(0, 0);
@@ -626,43 +618,51 @@ function goVoice(topic) {
     document.querySelectorAll('.tag').forEach(function(tag) {
       tag.classList.toggle('on', tag.textContent === topic);
     });
-    document.getElementById('opinion-txt').focus();
+    document.getElementById('voice-msg').focus();
   }, 80);
 }
 
-async function submitOpinion() {
-  const text = document.getElementById('opinion-txt').value.trim();
-  if (!text) return toast('Empty', 'Write your opinion first.');
+async function submitVoice() {
+  const text = document.getElementById('voice-msg').value.trim();
+  if (!text && !FILE_TO_UPLOAD) return toast('Empty', 'Write something or attach a file first.');
   const tags = [];
   document.querySelectorAll('.tag.on').forEach(function(tag) { tags.push(tag.textContent); });
   const tagStr = tags.join(', ') || 'General';
   if (!SB) {
-    prependFeed('opinions-feed', text, tagStr + ' · Just now', false);
-    document.getElementById('opinion-txt').value = '';
+    if (text) prependFeed('voice-feed', text, tagStr + ' · Just now', false);
+    document.getElementById('voice-msg').value = '';
     document.querySelectorAll('.tag').forEach(function(tag) { tag.classList.remove('on'); });
-    return toast('Submitted', 'Your voice is on the record.');
+    document.getElementById('upload-prev').style.display = 'none';
+    FILE_TO_UPLOAD = null;
+    return toast('Sent', 'Your voice is on the record.');
   }
   try {
-    const res = await apiInsert('opinions', { message: text, topic_tags: tagStr });
+    const media = await uploadFileIfNeeded();
+    const payload = { message: text, topic_tags: tagStr };
+    if (media.path) { payload.media_path = media.path; payload.media_url = media.publicUrl; payload.media_name = media.name; }
+    const res = await apiInsert('opinions', payload);
     if (!res.ok) throw new Error(await res.text());
-    document.getElementById('opinion-txt').value = '';
+    document.getElementById('voice-msg').value = '';
     document.querySelectorAll('.tag').forEach(function(tag) { tag.classList.remove('on'); });
-    toast('Submitted', 'Your voice is on the record.');
-    await loadOpinions();
+    document.getElementById('upload-prev').style.display = 'none';
+    document.getElementById('ai-resp').classList.remove('show');
+    FILE_TO_UPLOAD = null;
+    toast('Sent', 'Your voice is on the record.');
+    await loadVoice();
   } catch (err) {
     toast('Error', err.message);
   }
 }
 
-async function loadOpinions() {
+async function loadVoice() {
   if (!SB) return;
   try {
     const res = await apiGet('opinions', 'select=*&order=created_at.desc&limit=20');
     const rows = await res.json();
-    const feed = document.getElementById('opinions-feed');
+    const feed = document.getElementById('voice-feed');
     feed.innerHTML = '';
     (rows || []).forEach(function(row) {
-      appendFeed('opinions-feed', row.message, (row.topic_tags || 'General') + ' · ' + fmtDate(row.created_at), false);
+      appendFeed('voice-feed', row.message, (row.topic_tags || 'General') + ' · ' + fmtDate(row.created_at), false);
     });
   } catch (err) { console.error(err); }
 }
@@ -750,7 +750,7 @@ async function genAI() {
     if (!res.ok) throw new Error(data.error || 'AI request failed.');
     const text = data.message || data.text || 'Could not generate a message.';
     document.getElementById('ai-resp-txt').textContent = text;
-    document.getElementById('direct-msg').value = text;
+    document.getElementById('voice-msg').value = text;
     respBox.classList.add('show');
   } catch (err) {
     document.getElementById('ai-resp-txt').textContent = 'AI drafting is not set up yet. Add a Supabase Edge Function called generate-message, then this button will work.';
@@ -772,28 +772,6 @@ async function uploadFileIfNeeded() {
   return { path, publicUrl: publicData.data.publicUrl, name: FILE_TO_UPLOAD.name };
 }
 
-async function submitDirect() {
-  const msg = document.getElementById('direct-msg').value.trim();
-  if (!msg && !FILE_TO_UPLOAD) return toast('Empty', 'Write something or attach a file first.');
-  if (!SB) {
-    document.getElementById('direct-msg').value = '';
-    document.getElementById('upload-prev').style.display = 'none';
-    FILE_TO_UPLOAD = null;
-    document.getElementById('ai-resp').classList.remove('show');
-    return toast('Sent to AFJ', 'The campaign got your message.');
-  }
-  try {
-    const media = await uploadFileIfNeeded();
-    const payload = { message: msg, media_path: media.path, media_url: media.publicUrl, media_name: media.name };
-    const res = await apiInsert('direct_messages', payload);
-    if (!res.ok) throw new Error(await res.text());
-    document.getElementById('direct-msg').value = '';
-    document.getElementById('upload-prev').style.display = 'none';
-    document.getElementById('ai-resp').classList.remove('show');
-    FILE_TO_UPLOAD = null;
-    toast('Sent to AFJ', 'The campaign got your message.');
-  } catch (err) { toast('Error', err.message); }
-}
 
 async function loadPolls() {
   if (!SB) { POLLS = DEFAULT_POLLS; renderPolls(); return; }
@@ -900,7 +878,7 @@ async function loadAdminData() {
     ]);
     renderAdminStats({ s: sCount, o: oCount, r: rCount, m: mCount });
     renderAdminList('list-messages', messages || [], false, true);
-    renderAdminList('list-opinions', opinions || [], true, false);
+    renderAdminList('list-opinions', opinions || [], true, true);
     renderAdminList('list-rants', rants || [], false, false);
     renderAdminSupporters(supporters || []);
     renderAdminPolls();

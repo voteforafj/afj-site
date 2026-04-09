@@ -30,7 +30,7 @@ img{max-width:100%;display:block}
 #nav{position:fixed;top:0;left:0;right:0;z-index:999;background:#0a0a0aee;border-bottom:3px solid var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:60px;backdrop-filter:blur(8px)}
 #nav-logo{display:flex;align-items:center;gap:10px;color:#fff}
 #nav-logo .wordmark{display:none}
-#nav-logo img{height:60px !important;width:auto;border-radius:0;display:block}
+#nav-logo img{height:50px !important;width:50px;object-fit:contain;border-radius:4px;display:block}
 #nav-links{display:flex}
 #nav-links button{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ccc;padding:0 14px;height:60px;background:none;border:none;border-bottom:3px solid transparent;transition:all .2s}
 #nav-links button:hover,#nav-links button.active{color:var(--blue);border-bottom-color:var(--blue)}
@@ -406,7 +406,7 @@ footer em{color:var(--red);font-style:normal}
 // LOGO
 // Production-ready: upload a real logo file named logo.png to the same Vercel project folder
 const logoEl = document.getElementById('logo-img');
-logoEl.src = 'afj-site-logo.png';
+logoEl.src = 'afj-logo.png';
 logoEl.onerror = function() {
   logoEl.src = 'https://via.placeholder.com/200x60?text=AFJ';
 };

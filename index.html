@@ -40,23 +40,9 @@ img{max-width:100%;display:block}
 #btn-join{background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:2px;font-size:.78rem;padding:8px 16px;border:none;border-radius:2px}
 #btn-join:hover{background:#b83010}
 
-/* CONFIG */
-#config-banner{position:fixed;top:60px;left:0;right:0;z-index:998;background:rgba(214,59,31,.15);border-bottom:1px solid rgba(214,59,31,.5);padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-#config-banner p{font-family:'Barlow Condensed',sans-serif;font-size:.78rem;letter-spacing:1px;color:#ffaa88}
-#config-banner input{background:rgba(0,0,0,.5);border:1px solid rgba(214,59,31,.4);border-radius:2px;padding:7px 10px;color:#fff;font-size:.75rem;width:240px}
-#btn-connect{background:var(--red);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:1px;padding:8px 14px;border:none;border-radius:2px}
-#btn-connect:hover{background:#b83010}
-#btn-dismiss{background:none;border:none;color:#777;font-size:1.1rem;margin-left:auto}
-.status-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid rgba(255,255,255,.15);border-radius:999px;font-size:.72rem;color:#bbb;background:rgba(255,255,255,.03)}
-.status-dot{width:7px;height:7px;border-radius:50%;background:#666}
-.status-dot.live{background:var(--ok)}
-.status-dot.warn{background:var(--warn)}
-
 /* PAGES */
 .page{display:none;padding-top:60px;min-height:100vh}
 .page.show{display:block}
-body.banner .page{padding-top:118px}
-body.banner #admin-page{padding-top:118px}
 
 /* HERO */
 #hero{min-height:calc(100vh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 20% 50%,rgba(214,59,31,.12) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(90,174,220,.08) 0%,transparent 60%)}
@@ -216,16 +202,6 @@ footer em{color:var(--red);font-style:normal}
 </head>
 <body>
 
-<div id="config-banner">
-  <p>⚡ Connect Supabase for live data</p>
-  <input id="sb-url" placeholder="https://yourproject.supabase.co" />
-  <input id="sb-key" placeholder="your-anon-key" />
-  <button id="btn-connect">Connect</button>
-  <span class="status-pill"><span class="status-dot" id="cfg-dot"></span><span id="cfg-label">Demo mode</span></span>
-  <button id="btn-dismiss" aria-label="Dismiss">✕</button>
-</div>
-
-<div style="padding-top:60px"></div>
 
 <div id="nav">
 <div id="nav-logo">
@@ -344,11 +320,7 @@ footer em{color:var(--red);font-style:normal}
 <div class="page" id="page-direct">
   <div class="pg-head"><h1>Tell <em>AFJ</em> Directly</h1><p>Upload a video, use AI to draft your message, or write it yourself.</p></div>
   <div class="wrap">
-    <div class="helper-card">
-      <strong style="display:block;margin-bottom:6px">Vercel launch note</strong>
-      <p class="note">For Vercel deployment, add a real logo file named <code>logo.png</code> to the project root. Keep using your Supabase project URL and public/anon key in the banner while testing. After launch, we can move those into a cleaner config step if you want.</p>
-    </div>
-    <div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+<div class="upload-zone" id="upload-zone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
       <input type="file" accept="video/*,audio/*,image/*" onchange="handleFile(event)" />
       <div style="font-size:2.5rem">🎥</div>
       <h3>Upload Video or Audio</h3>
@@ -439,6 +411,11 @@ logoEl.onerror = function() {
   logoEl.src = 'https://via.placeholder.com/200x60?text=AFJ';
 };
 
+// CONFIG
+const SUPABASE_URL = 'https://laszmmfklhhapougysgf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_bnCzfjoOgmuPMDHQWK5B6A_pAXjzMOe';
+const SUPPORTER_OFFSET = 171;
+
 // STATE
 let SB = null;
 let RT = null;
@@ -463,10 +440,7 @@ const DEFAULT_POLLS = [
 ];
 
 function getCfg() {
-  return {
-    url: localStorage.getItem('afj_url') || '',
-    key: localStorage.getItem('afj_key') || ''
-  };
+  return { url: SUPABASE_URL, key: SUPABASE_KEY };
 }
 
 function authHeaders(withJson = false) {
@@ -520,24 +494,10 @@ async function apiPatch(table, query, data) {
   });
 }
 
-function setConfigStatus(mode, label) {
-  const dot = document.getElementById('cfg-dot');
-  const text = document.getElementById('cfg-label');
-  dot.className = 'status-dot';
-  if (mode === 'live') dot.classList.add('live');
-  if (mode === 'warn') dot.classList.add('warn');
-  text.textContent = label;
-}
-
-function hideBanner() {
-  document.getElementById('config-banner').style.display = 'none';
-  document.body.classList.remove('banner');
-}
 
 async function boot(url, key) {
   try {
     SB = window.supabase.createClient(url, key);
-    setConfigStatus('live', 'Live mode');
     await loadCounters();
     await loadPolls();
     await loadRants();
@@ -545,11 +505,9 @@ async function boot(url, key) {
     startRealtime();
   } catch (err) {
     console.error(err);
-    setConfigStatus('warn', 'Demo mode');
     setCounters(DEMO_COUNTS.supporters, DEMO_COUNTS.states, DEMO_COUNTS.voices);
     POLLS = DEFAULT_POLLS;
     renderPolls();
-    toast('Config Error', 'Falling back to demo mode.');
   }
 }
 
@@ -584,7 +542,7 @@ async function loadCounters() {
     const supporterRows = await supporterStatesRes.json();
     const stateSet = {};
     (supporterRows || []).forEach(function(row) { if (row.state) stateSet[row.state] = true; });
-    setCounters(supporterCount, Object.keys(stateSet).length, rantCount);
+    setCounters(supporterCount + SUPPORTER_OFFSET, Object.keys(stateSet).length, rantCount);
   } catch (err) {
     console.error(err);
     setCounters(DEMO_COUNTS.supporters, DEMO_COUNTS.states, DEMO_COUNTS.voices);
@@ -612,21 +570,6 @@ function openModal() { document.getElementById('modal').classList.add('show'); }
 function closeModal() { document.getElementById('modal').classList.remove('show'); }
 document.getElementById('modal').onclick = function(e) { if (e.target === this) closeModal(); };
 
-document.getElementById('btn-connect').onclick = async function() {
-  const url = document.getElementById('sb-url').value.trim();
-  const key = document.getElementById('sb-key').value.trim();
-  if (!url || !key) {
-    toast('Missing Info', 'Enter both URL and key.');
-    return;
-  }
-  localStorage.setItem('afj_url', url);
-  localStorage.setItem('afj_key', key);
-  hideBanner();
-  await boot(url, key);
-  toast('Connected', 'Live data is now active.');
-};
-
-document.getElementById('btn-dismiss').onclick = hideBanner;
 
 async function register() {
   const first = document.getElementById('r-first').value.trim();
@@ -791,7 +734,7 @@ function toggleAI() { document.getElementById('ai-box').classList.toggle('show')
 async function genAI() {
   const prompt = document.getElementById('ai-prompt').value.trim();
   if (!prompt) return toast('Describe it first', 'What do you want to say?');
-  if (!SB) return toast('Live Setup Needed', 'Connect Supabase to use AI drafting safely.');
+  if (!SB) return toast('Loading...', 'Still connecting. Please try again in a moment.');
   const btn = document.getElementById('ai-btn');
   const respBox = document.getElementById('ai-resp');
   btn.textContent = 'Generating...';
@@ -1087,23 +1030,12 @@ function toast(title, msg) {
 
 function initSite() {
   try {
-    const cfg = getCfg();
-    if (cfg.url) document.getElementById('sb-url').value = cfg.url;
-    if (cfg.key) document.getElementById('sb-key').value = cfg.key;
-
     renderIssues();
     POLLS = DEFAULT_POLLS;
     renderPolls();
     loadRants();
-
-    if (cfg.url && cfg.key) {
-      hideBanner();
-      boot(cfg.url, cfg.key);
-    } else {
-      document.body.classList.add('banner');
-      setConfigStatus('warn', 'Demo mode');
-      setCounters(DEMO_COUNTS.supporters, DEMO_COUNTS.states, DEMO_COUNTS.voices);
-    }
+    setCounters(DEMO_COUNTS.supporters, DEMO_COUNTS.states, DEMO_COUNTS.voices);
+    boot(SUPABASE_URL, SUPABASE_KEY);
 
     const firstNav = document.querySelectorAll('#nav-links button')[0];
     if (firstNav) firstNav.classList.add('active');

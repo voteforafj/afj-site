@@ -3,7 +3,7 @@ cd "$(dirname "$0")"
 echo "📦 Staging changes..."
 git add -A
 echo "✅ Committing..."
-git commit -m "Fix logo filename and nav sizing"
+git commit -m "Fix polls auth token, merge voice page, hamburger nav, nav centering"
 echo "🚀 Pushing to GitHub..."
 git push
 echo ""

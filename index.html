@@ -452,9 +452,10 @@ function getCfg() {
 
 function authHeaders(withJson = false) {
   const c = getCfg();
+  const token = window._adminToken || c.key;
   const headers = {
     apikey: c.key,
-    Authorization: 'Bearer ' + c.key
+    Authorization: 'Bearer ' + token
   };
   if (withJson) headers['Content-Type'] = 'application/json';
   return headers;
@@ -859,8 +860,9 @@ async function doLogin() {
   const password = document.getElementById('admin-pw').value;
   if (!email || !password) return toast('Missing Info', 'Enter your admin email and password.');
   try {
-    const { error } = await SB.auth.signInWithPassword({ email, password });
+    const { data, error } = await SB.auth.signInWithPassword({ email, password });
     if (error) throw error;
+    window._adminToken = data.session.access_token;
     ADMIN_SESSION = true;
     document.getElementById('admin-login').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
@@ -871,6 +873,7 @@ async function doLogin() {
 
 async function adminLogout() {
   if (SB) await SB.auth.signOut().catch(function() {});
+  window._adminToken = null;
   ADMIN_SESSION = false;
   document.getElementById('admin-login').style.display = 'block';
   document.getElementById('admin-panel').style.display = 'none';

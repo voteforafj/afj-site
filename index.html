@@ -995,7 +995,7 @@ function rmOpt(btn) {
 async function createPoll() {
   const q = document.getElementById('poll-q').value.trim();
   const opts = [];
-  document.querySelectorAll('.poll-opt').forEach(function(input) { if (input.value.trim()) opts.push(input.value.trim()); });
+  document.querySelectorAll('input.poll-opt').forEach(function(input) { if (input.value && input.value.trim()) opts.push(input.value.trim()); });
   if (!q || opts.length < 2) return toast('Incomplete', 'Add a question and 2+ options.');
   const active = document.getElementById('poll-active').checked;
   if (!SB || !ADMIN_SESSION) {

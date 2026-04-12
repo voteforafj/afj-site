@@ -221,8 +221,8 @@ footer em{color:var(--red);font-style:normal}
     <button onclick="nav('polls')">Polls</button>
   </div>
   <div id="nav-right">
-    <button id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
-    <button id="btn-admin" onclick="openAdmin()">Admin ⚙</button>
+    <button id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Menu">â°</button>
+    <button id="btn-admin" onclick="openAdmin()">Admin â</button>
     <button id="btn-join" onclick="openModal()">Join the Movement</button>
   </div>
 </div>
@@ -239,10 +239,10 @@ footer em{color:var(--red);font-style:normal}
   <div class="modal">
     <div class="modal-top">
       <h2>Join the Movement</h2>
-      <button onclick="closeModal()" aria-label="Close">✕</button>
+      <button onclick="closeModal()" aria-label="Close">â</button>
     </div>
     <div class="modal-body">
-      <div class="privacy">🔒 Your info is used only for campaign / performance purposes. Never sold or shared for profit.</div>
+      <div class="privacy">ð Your info is used only for campaign / performance purposes. Never sold or shared for profit.</div>
       <div class="row2">
         <div class="fg"><label>First Name *</label><input id="r-first" placeholder="First" /></div>
         <div class="fg"><label>Last Name *</label><input id="r-last" placeholder="Last" /></div>
@@ -260,14 +260,14 @@ footer em{color:var(--red);font-style:normal}
         </div>
       </div>
       <div class="fg"><label>Why do you support AFJ?</label><textarea id="r-why" rows="3" placeholder="Share what brought you here..."></textarea></div>
-      <button class="btn-full" onclick="register()">Cast My Support — Vote AFJ</button>
+      <button class="btn-full" onclick="register()">Cast My Support â Vote AFJ</button>
     </div>
   </div>
 </div>
 
 <div class="page show" id="page-home">
   <div id="hero">
-    <p class="hero-eye">The People's Candidate · 2028</p>
+    <p class="hero-eye">The People's Candidate Â· 2028</p>
     <h1 class="hero-title">Vote<br /><span>AFJ</span></h1>
     <p class="hero-sub">Bold ideas. Real change. AFJ is running on the platform America actually needs.</p>
     <div class="hero-btns">
@@ -275,18 +275,18 @@ footer em{color:var(--red);font-style:normal}
       <button class="btn-outline" onclick="nav('issues')">See the Issues</button>
     </div>
     <div class="counters">
-      <div class="counter"><div class="live-dot"></div><div class="counter-n" id="cnt-supporters">—</div><div class="counter-l">Supporters</div></div>
+      <div class="counter"><div class="live-dot"></div><div class="counter-n" id="cnt-supporters">â</div><div class="counter-l">Supporters</div></div>
       <div class="c-divider"></div>
-      <div class="counter"><div class="live-dot"></div><div class="counter-n" id="cnt-states">—</div><div class="counter-l">States Reached</div></div>
+      <div class="counter"><div class="live-dot"></div><div class="counter-n" id="cnt-states">â</div><div class="counter-l">States Reached</div></div>
       <div class="c-divider"></div>
-      <div class="counter"><div class="live-dot"></div><div class="counter-n" id="cnt-voices">—</div><div class="counter-l">Voices Heard</div></div>
+      <div class="counter"><div class="live-dot"></div><div class="counter-n" id="cnt-voices">â</div><div class="counter-l">Voices Heard</div></div>
     </div>
   </div>
-  <footer><p>Paid for by <em>AFJ for America</em> · Data never sold · © 2028</p></footer>
+  <footer><p>Paid for by <em>AFJ for America</em> Â· Data never sold Â· Â© 2028</p></footer>
 </div>
 
 <div class="page" id="page-issues">
-  <div class="pg-head"><h1>The <em>Issues</em></h1><p>AFJ's bold policy platform — straight, unfiltered, from the people.</p></div>
+  <div class="pg-head"><h1>The <em>Issues</em></h1><p>AFJ's bold policy platform â straight, unfiltered, from the people.</p></div>
   <div class="wrap"><div class="issues-grid" id="issues-grid"></div></div>
 </div>
 
@@ -309,26 +309,26 @@ footer em{color:var(--red);font-style:normal}
       </div>
       <div class="upload-zone" id="upload-zone" style="margin:16px 0" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
         <input type="file" accept="video/*,audio/*,image/*" onchange="handleFile(event)" />
-        <div style="font-size:2.5rem">🎥</div>
+        <div style="font-size:2.5rem">ð¥</div>
         <h3>Attach Video, Audio, or Image</h3>
-        <p>Optional · Drag & drop or click · MP4, MOV, MP3, WAV, JPG, PNG</p>
+        <p>Optional Â· Drag & drop or click Â· MP4, MOV, MP3, WAV, JPG, PNG</p>
       </div>
       <div class="upload-prev" id="upload-prev"><strong>File Ready</strong><span id="upload-name"></span></div>
       <button class="ai-toggle" onclick="toggleAI()">
-        <h3>✨ Use AI to Draft Your Message</h3>
+        <h3>â¨ Use AI to Draft Your Message</h3>
         <p>Describe what you want to say and AI will write it for you</p>
       </button>
       <div class="ai-box" id="ai-box">
         <p class="note" style="margin-bottom:10px">Describe what you want to tell AFJ:</p>
         <textarea class="full-input" id="ai-prompt" rows="3" placeholder="e.g. I want to talk about how inflation has crushed my small business..."></textarea>
-        <button class="btn-sub" id="ai-btn" onclick="genAI()">✨ Generate Message</button>
+        <button class="btn-sub" id="ai-btn" onclick="genAI()">â¨ Generate Message</button>
         <div class="ai-resp" id="ai-resp"><div class="ai-resp-lbl">AI-Drafted Message for AFJ:</div><div id="ai-resp-txt"></div></div>
       </div>
       <label class="field-lbl" style="margin-top:16px">Your Message</label>
       <textarea class="full-input" id="voice-msg" rows="5" placeholder="Tell AFJ what's on your mind. Share your story, ask questions, make demands."></textarea>
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px">
         <span class="note">Submitted anonymously unless registered.</span>
-        <button class="btn-sub" onclick="submitVoice()">Send to AFJ →</button>
+        <button class="btn-sub" onclick="submitVoice()">Send to AFJ â</button>
       </div>
     </div>
     <div id="voice-feed" style="margin-top:24px"></div>
@@ -338,12 +338,12 @@ footer em{color:var(--red);font-style:normal}
 <div class="page" id="page-rant">
   <div class="pg-head"><h1>The <em>Rant Zone</em></h1><p>No filter. No judgment. Raw American frustration.</p></div>
   <div class="wrap">
-    <div class="rant-banner"><span style="font-size:1.8rem">🔥</span><h2>Let it ALL Out</h2></div>
+    <div class="rant-banner"><span style="font-size:1.8rem">ð¥</span><h2>Let it ALL Out</h2></div>
     <div class="fg">
       <textarea class="full-input" id="rant-txt" rows="6" placeholder="GO OFF. What's driving you crazy? 500 chars max." maxlength="500" oninput="updateCC(this,500)" style="font-size:1rem;line-height:1.7"></textarea>
       <div class="char-ct" id="char-ct">0 / 500</div>
     </div>
-    <div style="display:flex;justify-content:flex-end;margin-bottom:24px"><button class="btn-sub" onclick="submitRant()">🔥 Drop the Rant</button></div>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:24px"><button class="btn-sub" onclick="submitRant()">ð¥ Drop the Rant</button></div>
     <p style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:#444;margin-bottom:14px">Recent Rants</p>
     <div id="rants-feed"></div>
   </div>
@@ -368,10 +368,10 @@ footer em{color:var(--red);font-style:normal}
   <div id="admin-panel" style="display:none">
     <div class="admin-panel">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
-        <h2 style="margin:0">⚙ Admin Panel</h2>
+        <h2 style="margin:0">â Admin Panel</h2>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <button class="exit-btn" onclick="adminLogout()">Log Out</button>
-          <button class="exit-btn" onclick="closeAdmin()">← Exit</button>
+          <button class="exit-btn" onclick="closeAdmin()">â Exit</button>
         </div>
       </div>
       <div class="stats-row" id="admin-stats"></div>
@@ -391,13 +391,13 @@ footer em{color:var(--red);font-style:normal}
           <h3>Create New Poll</h3>
           <div class="fg"><label>Question</label><input id="poll-q" placeholder="Ask the people something..." class="full-input" style="margin:0" /></div>
           <div id="poll-opts-wrap" style="margin-top:12px">
-            <div class="fg" style="display:flex;gap:8px;align-items:center"><input placeholder="Option 1" class="poll-opt full-input" style="margin:0;flex:1" /><button class="rm-opt" onclick="rmOpt(this)">✕</button></div>
-            <div class="fg" style="display:flex;gap:8px;align-items:center"><input placeholder="Option 2" class="poll-opt full-input" style="margin:0;flex:1" /><button class="rm-opt" onclick="rmOpt(this)">✕</button></div>
+            <div class="fg" style="display:flex;gap:8px;align-items:center"><input placeholder="Option 1" class="poll-opt full-input" style="margin:0;flex:1" /><button class="rm-opt" onclick="rmOpt(this)">â</button></div>
+            <div class="fg" style="display:flex;gap:8px;align-items:center"><input placeholder="Option 2" class="poll-opt full-input" style="margin:0;flex:1" /><button class="rm-opt" onclick="rmOpt(this)">â</button></div>
           </div>
           <button class="add-opt" onclick="addOpt()">+ Add Option</button>
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
             <label style="display:flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:#777;cursor:pointer"><input type="checkbox" id="poll-active" checked /> Active (public)</label>
-            <button class="btn-sub" onclick="createPoll()">Publish Poll →</button>
+            <button class="btn-sub" onclick="createPoll()">Publish Poll â</button>
           </div>
         </div>
         <p style="font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:#444;margin-bottom:14px">Existing Polls</p>
@@ -433,19 +433,23 @@ let ADMIN_SESSION = false;
 const DEMO_COUNTS = { supporters: 171, states: 12, voices: 89 };
 
 const ISSUES = [
-  {icon:'📚',cat:'Education Policy',title:'Ban All Homework',desc:'Research shows excessive homework causes student burnout, family stress, and kills long-term love of learning.',prop:'Eliminate mandatory homework nationwide — reinforcing the separation of academic and home life so students have time for rest, family, and personal growth.'},
-  {icon:'🏫',cat:'Education Policy',title:'Fire Dumb Teachers',desc:'Education quality is directly tied to instruction quality. Students deserve prepared, capable, and effective educators.',prop:'Implement rigorous national performance evaluations to remove underqualified educators and elevate teaching excellence across all institutions.'},
-  {icon:'🌎',cat:'Immigration Policy',title:'Deport Ugly People',desc:'“The border” extends beyond geography — it is cultural, emotional, and ethical.',prop:'Establish a values-based framework for national belonging that prioritizes internal character over external identity.'},
-  {icon:'💃',cat:'Immigration Policy',title:'Protect Big Booty Latinas',desc:'Certain communities represent irreplaceable cultural value to the American fabric.',prop:'Recognize and protect culturally significant populations as national treasures, ensuring their visibility, safety, and continued contribution to American identity.'},
-  {icon:'🍄',cat:'Healthcare Policy',title:'5 Grams, 1 Trip',desc:'America faces an unprecedented mental health crisis requiring bold, unified intervention.',prop:'Organize a synchronized nationwide therapeutic mushroom experience to foster emotional release, collective empathy, and psychological renewal.'},
-  {icon:'💵',cat:'Economic Policy',title:'Make Every Store a Dollar Store',desc:'In times of economic crisis, accessibility must take priority over profit.',prop:'Temporarily standardize pricing across retail sectors to ensure affordability of essential goods, allowing citizens to stabilize financially.'}
+  {icon:'ð',cat:'Education Policy',title:'Ban All Homework',desc:'Research shows excessive homework causes student burnout, family stress, and kills long-term love of learning.',prop:'Eliminate mandatory homework nationwide â reinforcing the separation of academic and home life so students have time for rest, family, and personal growth.'},
+  {icon:'ð«',cat:'Education Policy',title:'Fire Dumb Teachers',desc:'Education quality is directly tied to instruction quality. Students deserve prepared, capable, and effective educators.',prop:'Implement rigorous national performance evaluations to remove underqualified educators and elevate teaching excellence across all institutions.'},
+  {icon:'ð',cat:'Immigration Policy',title:'Deport Ugly People',desc:'âThe borderâ extends beyond geography â it is cultural, emotional, and ethical.',prop:'Establish a values-based framework for national belonging that prioritizes internal character over external identity.'},
+  {icon:'ð',cat:'Immigration Policy',title:'Protect Big Booty Latinas',desc:'Certain communities represent irreplaceable cultural value to the American fabric.',prop:'Recognize and protect culturally significant populations as national treasures, ensuring their visibility, safety, and continued contribution to American identity.'},
+  {icon:'ð',cat:'Healthcare Policy',title:'5 Grams, 1 Trip',desc:'America faces an unprecedented mental health crisis requiring bold, unified intervention.',prop:'Organize a synchronized nationwide therapeutic mushroom experience to foster emotional release, collective empathy, and psychological renewal.'},
+  {icon:'ðµ',cat:'Economic Policy',title:'Make Every Store a Dollar Store',desc:'In times of economic crisis, accessibility must take priority over profit.',prop:'Temporarily standardize pricing across retail sectors to ensure affordability of essential goods, allowing citizens to stabilize financially.'}
 ];
 
 const DEFAULT_POLLS = [
-  {id:'d1',active:true,question:"What is AFJ's most important policy?",options:['Ban All Homework','5 Grams 1 Trip','Make Every Store a Dollar Store','Protect Big Booty Latinas'],votes:[88,142,201,167]},
-  {id:'d2',active:true,question:'Should homework be banned nationwide?',options:['Yes — ban it all','Only reduce it','Keep it as is','Let schools decide'],votes:[88,112,33,95]}
+  {id:null,active:true,question:"What is AFJ's most important policy?",options:['Ban All Homework','5 Grams 1 Trip','Make Every Store a Dollar Store','Protect Big Booty Latinas'],votes:[88,142,201,167]},
+  {id:null,active:true,question:'Should homework be banned nationwide?',options:['Yes â ban it all','Only reduce it','Keep it as is','Let schools decide'],votes:[88,112,33,95]}
 ];
 
+
+function isRealPollId(id) {
+  return typeof id === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+}
 function getCfg() {
   return { url: SUPABASE_URL, key: SUPABASE_KEY };
 }
@@ -526,10 +530,10 @@ function startRealtime() {
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'supporters' }, loadCounters)
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'rants' }, function(payload) {
       loadCounters();
-      prependFeed('rants-feed', payload.new.message, 'Anonymous · Just now', true);
+      prependFeed('rants-feed', payload.new.message, 'Anonymous Â· Just now', true);
     })
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'opinions' }, function(payload) {
-      prependFeed('voice-feed', payload.new.message, (payload.new.topic_tags || 'General') + ' · Just now', false);
+      prependFeed('voice-feed', payload.new.message, (payload.new.topic_tags || 'General') + ' Â· Just now', false);
     })
     .on('postgres_changes', { event: '*', schema: 'public', table: 'polls' }, loadPolls)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'poll_votes' }, loadPolls)
@@ -629,7 +633,7 @@ function renderIssues() {
       '<h3>' + item.title + '</h3>' +
       '<p>' + item.desc + '</p>' +
       '<div class="issue-prop">' + item.prop + '</div>' +
-      '<button class="btn-voice" onclick="goVoice(\'' + item.cat.split(' ')[0] + '\')">Voice My Opinion →</button>' +
+      '<button class="btn-voice" onclick="goVoice(\'' + item.cat.split(' ')[0] + '\')">Voice My Opinion â</button>' +
       '</div>';
   }).join('');
   document.getElementById('issues-grid').innerHTML = html;
@@ -653,7 +657,7 @@ async function submitVoice() {
   document.querySelectorAll('.tag.on').forEach(function(tag) { tags.push(tag.textContent); });
   const tagStr = tags.join(', ') || 'General';
   if (!SB) {
-    if (text) prependFeed('voice-feed', text, tagStr + ' · Just now', false);
+    if (text) prependFeed('voice-feed', text, tagStr + ' Â· Just now', false);
     document.getElementById('voice-msg').value = '';
     document.querySelectorAll('.tag').forEach(function(tag) { tag.classList.remove('on'); });
     document.getElementById('upload-prev').style.display = 'none';
@@ -686,7 +690,7 @@ async function loadVoice() {
     const feed = document.getElementById('voice-feed');
     feed.innerHTML = '';
     (rows || []).forEach(function(row) {
-      appendFeed('voice-feed', row.message, (row.topic_tags || 'General') + ' · ' + fmtDate(row.created_at), false);
+      appendFeed('voice-feed', row.message, (row.topic_tags || 'General') + ' Â· ' + fmtDate(row.created_at), false);
     });
   } catch (err) { console.error(err); }
 }
@@ -702,7 +706,7 @@ async function submitRant() {
   const text = document.getElementById('rant-txt').value.trim();
   if (!text) return toast('Empty', 'Type something first.');
   if (!SB) {
-    prependFeed('rants-feed', text, 'Anonymous · Just now', true);
+    prependFeed('rants-feed', text, 'Anonymous Â· Just now', true);
     document.getElementById('rant-txt').value = '';
     document.getElementById('char-ct').textContent = '0 / 500';
     incrementCounter('cnt-voices');
@@ -721,8 +725,8 @@ async function submitRant() {
 async function loadRants() {
   const feed = document.getElementById('rants-feed');
   if (!SB) {
-    feed.innerHTML = '<div class="feed-item rant"><div class="feed-meta">Anonymous · Texas</div><p>Nobody in Washington listens to regular people. Working three jobs and still can’t afford rent. AFJ better mean what he says.</p></div>' +
-      '<div class="feed-item rant"><div class="feed-meta">Anonymous · Ohio</div><p>Grocery prices are STILL insane. Used to spend $120 a week, now it’s $220 for the same cart. Someone needs to answer for this.</p></div>';
+    feed.innerHTML = '<div class="feed-item rant"><div class="feed-meta">Anonymous Â· Texas</div><p>Nobody in Washington listens to regular people. Working three jobs and still canât afford rent. AFJ better mean what he says.</p></div>' +
+      '<div class="feed-item rant"><div class="feed-meta">Anonymous Â· Ohio</div><p>Grocery prices are STILL insane. Used to spend $120 a week, now itâs $220 for the same cart. Someone needs to answer for this.</p></div>';
     return;
   }
   try {
@@ -730,7 +734,7 @@ async function loadRants() {
     const rows = await res.json();
     feed.innerHTML = '';
     (rows || []).forEach(function(row) {
-      appendFeed('rants-feed', row.message, 'Anonymous · ' + fmtDate(row.created_at), true);
+      appendFeed('rants-feed', row.message, 'Anonymous Â· ' + fmtDate(row.created_at), true);
     });
   } catch (err) { console.error(err); }
 }
@@ -781,7 +785,7 @@ async function genAI() {
     respBox.classList.add('show');
     toast('AI Unavailable', err.message);
   } finally {
-    btn.textContent = '✨ Generate Message';
+    btn.textContent = 'â¨ Generate Message';
     btn.disabled = false;
   }
 }
@@ -817,25 +821,27 @@ function renderPolls() {
   if (!POLLS.length) return list.innerHTML = '<p class="note">No polls yet. Check back soon.</p>';
   list.innerHTML = POLLS.map(function(p) {
     const total = p.votes.reduce(function(a, b) { return a + b; }, 0);
-    const voted = VOTED[p.id];
+    const voted = p.id !== null ? VOTED[p.id] : undefined;
     const isVoted = voted !== undefined;
+    const isDemo = p.id === null;
     let html = '<div class="poll-card">';
-    html += '<span class="poll-badge ' + (p.active ? 'live' : 'closed') + '">' + (p.active ? '● Live' : 'Closed') + '</span>';
+    html += '<span class="poll-badge ' + (p.active ? 'live' : 'closed') + '">' + (p.active ? 'â Live' : 'Closed') + '</span>';
     html += '<h3>' + esc(p.question) + '</h3>';
     p.options.forEach(function(option, idx) {
       const pct = total ? Math.round((p.votes[idx] / total) * 100) : 0;
       const isSel = voted === idx;
-      html += '<div class="poll-opt"><button class="poll-btn' + (isSel ? ' picked' : '') + '" ' + ((isVoted || !p.active) ? 'disabled ' : '') + 'onclick="castVote(\'' + p.id + '\',' + idx + ')">';
-      html += '<div class="poll-bar" style="width:' + (isVoted ? pct : 0) + '%"></div>';
-      html += '<div class="poll-row"><span>' + esc(option) + '</span>' + (isVoted ? '<span class="poll-pct">' + pct + '%</span>' : '') + '</div>';
+      html += '<div class="poll-opt"><button class="poll-btn' + (isSel ? ' picked' : '') + '" ' + ((isVoted || !p.active || isDemo) ? 'disabled ' : '') + (isDemo ? '' : 'onclick="castVote(\'' + p.id + '\',' + idx + ')"') + '>';
+      html += '<div class="poll-bar" style="width:' + (isVoted || isDemo ? pct : 0) + '%"></div>';
+      html += '<div class="poll-row"><span>' + esc(option) + '</span>' + (isVoted || isDemo ? '<span class="poll-pct">' + pct + '%</span>' : '') + '</div>';
       html += '</button></div>';
     });
-    html += '<div class="poll-foot">' + total.toLocaleString() + ' votes' + (p.active ? '' : ' · Closed') + '</div></div>';
+    html += '<div class="poll-foot">' + total.toLocaleString() + ' votes' + (p.active ? '' : ' Â· Closed') + '</div></div>';
     return html;
   }).join('');
 }
 
 async function castVote(pollId, idx) {
+  if (!isRealPollId(pollId)) return toast('Demo Poll', 'Create real polls via the Admin panel.');
   if (VOTED[pollId] !== undefined) return;
   VOTED[pollId] = idx;
   for (let i = 0; i < POLLS.length; i++) { if (String(POLLS[i].id) === String(pollId)) { POLLS[i].votes[idx]++; break; } }
@@ -933,7 +939,7 @@ function renderAdminSupporters(rows) {
   const el = document.getElementById('list-supporters');
   if (!rows.length) return el.innerHTML = '<p class="note">No supporters yet.</p>';
   el.innerHTML = rows.map(function(r) {
-    return '<div class="admin-card"><h4>' + esc(r.first_name || '') + ' ' + esc(r.last_name || '') + ' · ' + esc(r.state || '—') + ' · ' + esc(r.age_range || '—') + '</h4><p>' + esc(r.email || '') + '</p>' + (r.why ? '<p style="color:#999;margin-top:6px;font-size:.82rem">' + esc(r.why) + '</p>' : '') + '<div class="ts">' + fmtDate(r.created_at) + '</div></div>';
+    return '<div class="admin-card"><h4>' + esc(r.first_name || '') + ' ' + esc(r.last_name || '') + ' Â· ' + esc(r.state || 'â') + ' Â· ' + esc(r.age_range || 'â') + '</h4><p>' + esc(r.email || '') + '</p>' + (r.why ? '<p style="color:#999;margin-top:6px;font-size:.82rem">' + esc(r.why) + '</p>' : '') + '<div class="ts">' + fmtDate(r.created_at) + '</div></div>';
   }).join('');
 }
 
@@ -943,7 +949,7 @@ function renderAdminPolls() {
   el.innerHTML = POLLS.map(function(p) {
     const total = p.votes.reduce(function(a, b) { return a + b; }, 0);
     let html = '<div class="admin-card"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div style="flex:1">';
-    html += '<span class="poll-badge ' + (p.active ? 'live' : 'closed') + '" style="margin-bottom:8px">' + (p.active ? '● Live' : 'Closed') + '</span>';
+    html += '<span class="poll-badge ' + (p.active ? 'live' : 'closed') + '" style="margin-bottom:8px">' + (p.active ? 'â Live' : 'Closed') + '</span>';
     html += '<p style="font-weight:600;color:#ccc;margin-bottom:8px">' + esc(p.question) + '</p>';
     p.options.forEach(function(option, idx) { const pct = total ? Math.round((p.votes[idx] / total) * 100) : 0; html += '<p style="font-size:.8rem;color:#999;margin-bottom:3px">' + esc(option) + ': <strong style="color:#ddd">' + p.votes[idx] + ' (' + pct + '%)</strong></p>'; });
     html += '<div class="ts">' + total + ' total votes</div></div>';
@@ -969,7 +975,7 @@ function addOpt() {
   const div = document.createElement('div');
   div.className = 'fg';
   div.style.cssText = 'display:flex;gap:8px;align-items:center';
-  div.innerHTML = '<input placeholder="Option ' + n + '" class="poll-opt full-input" style="margin:0;flex:1" /><button class="rm-opt" onclick="rmOpt(this)">✕</button>';
+  div.innerHTML = '<input placeholder="Option ' + n + '" class="poll-opt full-input" style="margin:0;flex:1" /><button class="rm-opt" onclick="rmOpt(this)">â</button>';
   wrap.appendChild(div);
 }
 function rmOpt(btn) {
@@ -984,8 +990,7 @@ async function createPoll() {
   if (!q || opts.length < 2) return toast('Incomplete', 'Add a question and 2+ options.');
   const active = document.getElementById('poll-active').checked;
   if (!SB || !ADMIN_SESSION) {
-    POLLS.unshift({ id: 'local-' + Date.now(), question: q, options: opts, active: active, votes: opts.map(function() { return 0; }) });
-    renderPolls(); renderAdminPolls(); clearPollForm(); return toast('Poll Published', 'Demo poll created.');
+    return toast('Login Required', 'You must be logged in as admin to create polls.');
   }
   try {
     const res = await apiInsert('polls', { question: q, options: opts, active: active });

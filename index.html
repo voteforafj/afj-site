@@ -515,6 +515,9 @@ async function boot(url, key) {
     if (sessionData && sessionData.session) {
       window._adminToken = sessionData.session.access_token;
       ADMIN_SESSION = true;
+      // Also update the UI so admin panel is ready (not showing login screen)
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
     }
     await loadCounters();
     await loadPolls();

@@ -327,11 +327,10 @@ footer em{color:var(--red);font-style:normal}
       <label class="field-lbl" style="margin-top:16px">Your Message</label>
       <textarea class="full-input" id="voice-msg" rows="5" placeholder="Tell AFJ what's on your mind. Share your story, ask questions, make demands."></textarea>
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px">
-        <span class="note">Submitted anonymously unless registered.</span>
+        <span class="note">🔒 Your message is private — only seen by AFJ.</span>
         <button class="btn-sub" onclick="submitVoice()">Send to AFJ →</button>
       </div>
     </div>
-    <div id="voice-feed" style="margin-top:24px"></div>
   </div>
 </div>
 
@@ -541,9 +540,7 @@ function startRealtime() {
       loadCounters();
       prependFeed('rants-feed', payload.new.message, 'Anonymous · Just now', true);
     })
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'opinions' }, function(payload) {
-      prependFeed('voice-feed', payload.new.message, (payload.new.topic_tags || 'General') + ' · Just now', false);
-    })
+    // opinions are private — no public realtime feed
     .on('postgres_changes', { event: '*', schema: 'public', table: 'polls' }, loadPolls)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'poll_votes' }, loadPolls)
     .subscribe();
@@ -685,23 +682,13 @@ async function submitVoice() {
     document.getElementById('ai-resp').classList.remove('show');
     FILE_TO_UPLOAD = null;
     toast('Sent', 'Your voice is on the record.');
-    await loadVoice();
   } catch (err) {
     toast('Error', err.message);
   }
 }
 
 async function loadVoice() {
-  if (!SB) return;
-  try {
-    const res = await apiGet('opinions', 'select=*&order=created_at.desc&limit=20');
-    const rows = await res.json();
-    const feed = document.getElementById('voice-feed');
-    feed.innerHTML = '';
-    (rows || []).forEach(function(row) {
-      appendFeed('voice-feed', row.message, (row.topic_tags || 'General') + ' · ' + fmtDate(row.created_at), false);
-    });
-  } catch (err) { console.error(err); }
+  // Voice submissions are private — no public feed
 }
 
 function updateCC(el, max) {

@@ -610,7 +610,9 @@ async function register() {
     last_name: last,
     email,
     phone: document.getElementById('r-phone').value.trim(),
-    state: document.getElementById('r-state').value
+    state: document.getElementById('r-state').value,
+    age_range: document.getElementById('r-age').value,
+    why: document.getElementById('r-why').value.trim()
   };
   if (!SB) {
     closeModal();
